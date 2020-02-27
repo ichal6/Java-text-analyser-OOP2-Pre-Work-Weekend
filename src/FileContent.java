@@ -1,3 +1,5 @@
+package src;
+
 import java.util.Iterator;
 
 public class FileContent implements IterableText {

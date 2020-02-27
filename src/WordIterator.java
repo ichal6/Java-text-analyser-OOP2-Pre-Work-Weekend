@@ -1,3 +1,5 @@
+package src;
+
 import java.util.Iterator;
 
 public class WordIterator implements Iterator {
