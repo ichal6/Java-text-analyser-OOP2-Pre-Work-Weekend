@@ -7,9 +7,8 @@ public class WordIterator implements Iterator<String> {
     private String fromFile;
 
     WordIterator(){
-        wordIterator = new FileContent();
+        wordIterator = new FileContent(false);
         fromFile = wordIterator.fileContent;
-        fromFile = fromFile.toLowerCase();
     }
 
     @Override

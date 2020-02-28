@@ -4,16 +4,11 @@ import java.util.Iterator;
 
 public class CharIterator implements Iterator<String> {
     public FileContent charIterator;
-    private String fromFile = "This is example string"; //To test -remove after write class FileContent
+    private String fromFile;
 
     CharIterator(){
-        fromFile = fromFile.toLowerCase();
-        String[] splitString = fromFile.split(" ");
-        StringBuffer sb = new StringBuffer();
-        for(int i = 0; i < splitString.length; i++) {
-            sb.append(splitString[i]);
-        }
-        fromFile = sb.toString();
+        charIterator = new FileContent(true);
+        fromFile = charIterator.fileContent;
     }
 
     @Override
