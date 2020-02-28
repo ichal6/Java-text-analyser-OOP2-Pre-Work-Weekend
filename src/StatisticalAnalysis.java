@@ -42,7 +42,11 @@ public class StatisticalAnalysis {
     }
 
     public int size(){
-        return 0;
+        int size = 0;
+        for(int values : dicOfWord.values()){
+            size += values;
+        }
+        return size;
     }
 
     public Set<String> occurMoreThan(Integer n){
