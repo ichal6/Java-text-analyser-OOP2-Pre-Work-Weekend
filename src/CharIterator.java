@@ -2,7 +2,7 @@ package src;
 
 import java.util.Iterator;
 
-public class CharIterator implements Iterator {
+public class CharIterator implements Iterator<String> {
     public FileContent charIterator;
     private String fromFile = "This is example string"; //To test -remove after write class FileContent
 
