@@ -4,9 +4,11 @@ import java.util.Iterator;
 
 public class WordIterator implements Iterator<String> {
     public FileContent wordIterator;
-    private String fromFile = "This is example string It is example text in this String"; //To test -remove after write class FileContent
+    private String fromFile;
 
     WordIterator(){
+        wordIterator = new FileContent();
+        fromFile = wordIterator.fileContent;
         fromFile = fromFile.toLowerCase();
     }
 
