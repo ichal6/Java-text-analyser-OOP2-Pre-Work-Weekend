@@ -15,13 +15,14 @@ public class StatisticalAnalysis {
     public StatisticalAnalysis(String[] filename){
         dicOfWord = new HashMap<>();
         {
-            dicOfWord.put("key",10);
+            dicOfWord.put("key",100);
             dicOfWord.put("word",1);
             dicOfWord.put("emaus",3);
         }
         System.out.println(countOf());
         System.out.println(dictionarySize());
         System.out.println(size());
+        System.out.println(occurMoreThan(1));
     }
 
     public int countOf(String... elems){
@@ -49,7 +50,16 @@ public class StatisticalAnalysis {
 
     public Set<String> occurMoreThan(Integer n){
         Set<String> newSet = new HashSet<String>();
-
+        Double size = Double.valueOf(size());
+        Double value;
+        Double percent = Double.valueOf(0);
+        for(String key: dicOfWord.keySet()){
+            value = Double.valueOf(dicOfWord.get(key));
+            percent = (value / size) * 100.0;
+            if(percent > n){
+                newSet.add(key);
+            }
+        }
         return newSet;
     }
 }
