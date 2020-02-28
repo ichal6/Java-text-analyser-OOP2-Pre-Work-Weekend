@@ -4,7 +4,17 @@ import java.util.Iterator;
 
 public class CharIterator implements Iterator {
     public FileContent charIterator;
-    private String fromFile = "This is example string. It is example text in this String"; //To test -remove after write class FileContent
+    private String fromFile = "This is example string"; //To test -remove after write class FileContent
+
+    CharIterator(){
+        fromFile = fromFile.toLowerCase();
+        String[] splitString = fromFile.split(" ");
+        StringBuffer sb = new StringBuffer();
+        for(int i = 0; i < splitString.length; i++) {
+            sb.append(splitString[i]);
+        }
+        fromFile = sb.toString();
+    }
 
     @Override
     public boolean hasNext() {
