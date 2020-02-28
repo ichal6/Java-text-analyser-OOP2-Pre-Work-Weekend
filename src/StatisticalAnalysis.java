@@ -15,12 +15,22 @@ public class StatisticalAnalysis {
     public StatisticalAnalysis(String[] filename){
         dicOfWord = new HashMap<>();
         {
-            dicOfWord.put("Key",1);
+            dicOfWord.put("key",1);
+            dicOfWord.put("word",1);
+            dicOfWord.put("emaus",3);
         }
+        System.out.println(countOf());
     }
 
     public int countOf(String... elems){
-        return 0;
+        int count = 0;
+        for(String oneString : elems){
+            if(dicOfWord.containsKey(oneString)){
+               count += dicOfWord.get(oneString);
+            }
+        }
+        
+        return count;
     }
 
     public int dictionarySize(){
