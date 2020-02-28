@@ -13,12 +13,24 @@ public class StatisticalAnalysis {
     private HashMap<String, Integer> dicOfChar;
 
     public StatisticalAnalysis(String[] filename){
+        statisticalAnalysis = new WordIterator();
         dicOfWord = new HashMap<>();
+        while(statisticalAnalysis.hasNext()){
+            String word = statisticalAnalysis.next();
+            if(dicOfWord.containsKey(word)){
+                int count = dicOfWord.get(word);
+                dicOfWord.put(word, count++);
+            }else{
+                dicOfWord.put(word, 1);
+            }
+            
+        }
+        /*
         {
             dicOfWord.put("key",100);
             dicOfWord.put("word",1);
             dicOfWord.put("emaus",3);
-        }
+        }*/
         System.out.println(countOf());
         System.out.println(dictionarySize());
         System.out.println(size());
