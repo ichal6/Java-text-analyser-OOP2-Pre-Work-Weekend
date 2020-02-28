@@ -21,6 +21,7 @@ public class StatisticalAnalysis {
         }
         System.out.println(countOf());
         System.out.println(dictionarySize());
+        System.out.println(size());
     }
 
     public int countOf(String... elems){
@@ -35,10 +36,7 @@ public class StatisticalAnalysis {
     }
 
     public int dictionarySize(){
-        Set<String> setOfWords = dicOfWord.keySet();
-        return setOfWords.size();
-
-        //return 0;
+        return dicOfWord.size();
     }
 
     public int size(){
