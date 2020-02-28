@@ -5,6 +5,10 @@ import java.util.Iterator;
 import java.util.Set;
 
 public class StatisticalAnalysis {
+    public StatisticalAnalysis(String[] filename){
+        
+    }
+
     public Iterator<String>  statisticalAnalysis;
 
     public int countOf(String... elems){
