@@ -9,7 +9,7 @@ public class WordIterator implements Iterator {
 
     @Override
     public boolean hasNext() {
-        if(fromFile == "" || fromFile == " "){
+        if(fromFile.equals("") || fromFile.equals(" ")){
             return false;
         }
         return true;
