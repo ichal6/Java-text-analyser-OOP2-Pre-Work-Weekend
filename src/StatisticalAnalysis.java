@@ -1,15 +1,23 @@
 package src;
 
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
 
 public class StatisticalAnalysis {
-    public StatisticalAnalysis(String[] filename){
-        
-    }
 
     public Iterator<String>  statisticalAnalysis;
+
+    private HashMap<String, Integer> dicOfWord;
+    private HashMap<String, Integer> dicOfChar;
+
+    public StatisticalAnalysis(String[] filename){
+        dicOfWord = new HashMap<>();
+        {
+            dicOfWord.put("Key",1);
+        }
+    }
 
     public int countOf(String... elems){
         return 0;
