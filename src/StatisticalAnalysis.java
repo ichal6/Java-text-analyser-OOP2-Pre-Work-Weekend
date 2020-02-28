@@ -19,7 +19,7 @@ public class StatisticalAnalysis {
             String word = statisticalAnalysis.next();
             if(dicOfWord.containsKey(word)){
                 int count = dicOfWord.get(word);
-                dicOfWord.put(word, count++);
+                dicOfWord.put(word, ++count);
             }else{
                 dicOfWord.put(word, 1);
             }
@@ -31,7 +31,7 @@ public class StatisticalAnalysis {
             dicOfWord.put("word",1);
             dicOfWord.put("emaus",3);
         }*/
-        System.out.println(countOf());
+        System.out.println(countOf("string"));
         System.out.println(dictionarySize());
         System.out.println(size());
         System.out.println(occurMoreThan(1));
