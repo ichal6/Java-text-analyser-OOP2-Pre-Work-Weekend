@@ -4,18 +4,21 @@ import java.util.Iterator;
 
 public class WordIterator implements Iterator {
     public FileContent wordIterator;
+    private String fromFile = "This is example string. It is example text in this String"; //To test -remove after write class FileContent
 
 
     @Override
     public boolean hasNext() {
-        // TODO Auto-generated method stub
-        return false;
+        if(fromFile == "" || fromFile == " "){
+            return false;
+        }
+        return true;
     }
 
     @Override
     public String next() {
-        // TODO Auto-generated method stub
-        return null;
+        String[] splitString = fromFile.split(" ");
+        return splitString[0];
     }
     
 }
