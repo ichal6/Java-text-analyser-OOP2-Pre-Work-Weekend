@@ -18,6 +18,11 @@ public class WordIterator implements Iterator {
     @Override
     public String next() {
         String[] splitString = fromFile.split(" ");
+        StringBuffer sb = new StringBuffer();
+        for(int i = 1; i < splitString.length; i++) {
+            sb.append(splitString[i] + " ");
+        }
+        fromFile = sb.toString();
         return splitString[0];
     }
     
