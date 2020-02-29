@@ -50,6 +50,19 @@ public class StatisticalAnalysis {
         arrayOfDics.add(dic);
     }
 
+    private void percentOfAlphabet(HashMap<String, Integer> dic){
+        String alphabetAsString = ("A B C D E F G H I J K L M N O P Q R S T U V W X Y Z").toLowerCase();
+        String[] alphabet = alphabetAsString.split(" ");
+        for(String letter: alphabet){
+            if(dic.containsKey(letter)){
+                int count = dic.get(letter);
+                double percentValue = ((double)count / (double) size()) * 100.0;
+                System.out.print(String.format("[ %s -> %.2f] ", letter , percentValue)); 
+            }
+        }
+        System.out.println();
+    }
+
     public int countOf(String... elems){
         int count = 0;
         for(String oneString : elems){
