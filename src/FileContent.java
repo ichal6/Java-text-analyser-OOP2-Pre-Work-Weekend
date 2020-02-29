@@ -7,7 +7,9 @@ public class FileContent implements IterableText {
     private String filename;
     public String fileContent;
 
-    FileContent(boolean toCharIterator){
+    FileContent(boolean toCharIterator, String filename){
+        // Implement methods to read from file and assign to fileContent value
+        this.filename = filename;
         this.fileContent = "This is example string It is example text in this String";
         this.fileContent = this.fileContent.toLowerCase();
         if(toCharIterator){
@@ -22,14 +24,14 @@ public class FileContent implements IterableText {
 
     @Override
     public Iterator<String> charIterator() {
-        Iterator<String> newIterator = new CharIterator(); 
+        Iterator<String> newIterator = new CharIterator(filename); 
         // TODO Auto-generated method stub
         return newIterator;
     }
 
     @Override
     public Iterator<String> wordIterator() {
-        Iterator<String> newIterator = new WordIterator(); 
+        Iterator<String> newIterator = new WordIterator(filename); 
         // TODO Auto-generated method stub
         return newIterator;
     }
