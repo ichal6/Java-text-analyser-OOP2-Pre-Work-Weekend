@@ -9,39 +9,45 @@ public class StatisticalAnalysis {
 
     public Iterator<String>  statisticalAnalysis;
 
+    private HashMap<String, Integer> dicOfElem;
     private HashMap<String, Integer> dicOfWord;
     private HashMap<String, Integer> dicOfChar;
 
     public StatisticalAnalysis(String[] filename){
-        statisticalAnalysis = new WordIterator();
         dicOfWord = new HashMap<>();
-        while(statisticalAnalysis.hasNext()){
-            String word = statisticalAnalysis.next();
-            if(dicOfWord.containsKey(word)){
-                int count = dicOfWord.get(word);
-                dicOfWord.put(word, ++count);
-            }else{
-                dicOfWord.put(word, 1);
-            }
-            
-        }
-        /*
-        {
-            dicOfWord.put("key",100);
-            dicOfWord.put("word",1);
-            dicOfWord.put("emaus",3);
-        }*/
+        dicOfChar = new HashMap<>();
+
+        statisticalAnalysis = new WordIterator();
+        addToDic(dicOfWord);
+
+        statisticalAnalysis = new CharIterator();
+        addToDic(dicOfChar);
+
+        dicOfElem = dicOfChar;
+        //Move to View bottom code
         System.out.println(countOf("string"));
         System.out.println(dictionarySize());
         System.out.println(size());
         System.out.println(occurMoreThan(1));
     }
 
+    private void addToDic(HashMap<String, Integer> dic){
+        while(statisticalAnalysis.hasNext()){
+            String word = statisticalAnalysis.next();
+            if(dic.containsKey(word)){
+                int count = dic.get(word);
+                dic.put(word, ++count);
+            }else{
+                dic.put(word, 1);
+            }
+        }
+    }
+
     public int countOf(String... elems){
         int count = 0;
         for(String oneString : elems){
-            if(dicOfWord.containsKey(oneString)){
-               count += dicOfWord.get(oneString);
+            if(dicOfElem.containsKey(oneString)){
+               count += dicOfElem.get(oneString);
             }
         }
         
@@ -49,12 +55,12 @@ public class StatisticalAnalysis {
     }
 
     public int dictionarySize(){
-        return dicOfWord.size();
+        return dicOfElem.size();
     }
 
     public int size(){
         int size = 0;
-        for(int values : dicOfWord.values()){
+        for(int values : dicOfElem.values()){
             size += values;
         }
         return size;
@@ -65,8 +71,8 @@ public class StatisticalAnalysis {
         Double size = Double.valueOf(size());
         Double value;
         Double percent = Double.valueOf(0);
-        for(String key: dicOfWord.keySet()){
-            value = Double.valueOf(dicOfWord.get(key));
+        for(String key: dicOfElem.keySet()){
+            value = Double.valueOf(dicOfElem.get(key));
             percent = (value / size) * 100.0;
             if(percent > n){
                 newSet.add(key);
