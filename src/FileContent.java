@@ -12,6 +12,12 @@ public class FileContent implements IterableText {
         this.filename = filename;
         this.fileContent = "This is example string It is example text in this String";
         this.fileContent = this.fileContent.toLowerCase();
+
+        removeWhiteSpaces(toCharIterator);
+               
+    }
+
+    private void removeWhiteSpaces(boolean toCharIterator){
         if(toCharIterator){
             String[] splitString = fileContent.split(" ");
             StringBuffer sb = new StringBuffer();
@@ -19,7 +25,7 @@ public class FileContent implements IterableText {
                 sb.append(splitString[i]);
             }
             fileContent = sb.toString();
-        }        
+        } 
     }
 
     @Override
