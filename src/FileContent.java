@@ -8,24 +8,28 @@ public class FileContent implements IterableText {
     public String fileContent;
 
     FileContent(boolean toCharIterator, String filename){
-        // Implement methods to read from file and assign to fileContent value
+        
+        readFromFile();
         this.filename = filename;
         this.fileContent = "This is example string It is example text in this String";
         this.fileContent = this.fileContent.toLowerCase();
-
-        removeWhiteSpaces(toCharIterator);
-               
+        if(toCharIterator){
+            removeWhiteSpaces();
+        }      
     }
 
-    private void removeWhiteSpaces(boolean toCharIterator){
-        if(toCharIterator){
+    private void readFromFile(){
+        // Implement methods to read from file and assign to fileContent value
+        
+    }
+
+    private void removeWhiteSpaces(){
             String[] splitString = fileContent.split(" ");
             StringBuffer sb = new StringBuffer();
             for(int i = 0; i < splitString.length; i++) {
                 sb.append(splitString[i]);
             }
             fileContent = sb.toString();
-        } 
     }
 
     @Override
