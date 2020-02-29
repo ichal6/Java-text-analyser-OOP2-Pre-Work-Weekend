@@ -26,15 +26,45 @@ public class StatisticalAnalysis {
 
             statisticalAnalysis = new CharIterator(oneFile);
             addToDic(dicOfChar);
+
+            dicOfElem = dicOfWord;
+            int countOfWords = size();
+            int dictSize = dictionarySize();
+            Set<String> mostUsedWords = occurMoreThan(1);
+            int countOfLove = countOf("love");
+            int countOfHate = countOf("hate");
+            int countOfMusic = countOf("music");
+
+            dicOfElem = dicOfChar;
+            Double countOfChars = Double.valueOf(size());
+            Double countOfVowels = Double.valueOf(countOf("A", "E", "I", "O", "U"));
+            Double percentOfVowels = (countOfVowels / countOfChars) * Double.valueOf(100.0);
+            double countRatioAE = (double)countOf("A")/(double)countOf("E");
+            
+
+            System.out.println("Char count: " + countOfChars);
+            System.out.println("Word count: " + countOfWords);
+            System.out.println("Dict size: " + dictSize);
+            System.out.println("Most used words (>1%): " + mostUsedWords);
+            System.out.println("/'love/' count: " + countOfLove);
+            System.out.println("/'hate/' count: " + countOfHate);
+            System.out.println("/'music/' count: " + countOfMusic);
+            System.out.println("vowels %: " + percentOfVowels);
+            System.out.println("a:e count ratio: " + countRatioAE);
+            percentOfAlphabet(dicOfElem);
+            
         }
         
 
-        dicOfElem = dicOfChar;
-        //Move to View bottom code
-        System.out.println(countOf("string"));
-        System.out.println(dictionarySize());
-        System.out.println(size());
-        System.out.println(occurMoreThan(1));
+        
+        
+        
+        
+
+        // System.out.println(countOf("string"));
+        // System.out.println(dictionarySize());
+        // System.out.println(size());
+        // System.out.println(occurMoreThan(1));
     }
 
     private void addToDic(HashMap<String, Integer> dic){
@@ -66,6 +96,7 @@ public class StatisticalAnalysis {
     public int countOf(String... elems){
         int count = 0;
         for(String oneString : elems){
+            oneString = oneString.toLowerCase();
             if(dicOfElem.containsKey(oneString)){
                count += dicOfElem.get(oneString);
             }
