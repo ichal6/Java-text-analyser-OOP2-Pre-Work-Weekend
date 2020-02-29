@@ -6,8 +6,8 @@ public class WordIterator implements Iterator<String> {
     public FileContent wordIterator;
     private String fromFile;
 
-    WordIterator(){
-        wordIterator = new FileContent(false);
+    WordIterator(String oneFile){
+        wordIterator = new FileContent(false, oneFile);
         fromFile = wordIterator.fileContent;
     }
 

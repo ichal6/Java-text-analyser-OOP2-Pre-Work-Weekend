@@ -6,8 +6,8 @@ public class CharIterator implements Iterator<String> {
     public FileContent charIterator;
     private String fromFile;
 
-    CharIterator(){
-        charIterator = new FileContent(true);
+    CharIterator(String oneFile){
+        charIterator = new FileContent(true, oneFile);
         fromFile = charIterator.fileContent;
     }
 
@@ -18,6 +18,7 @@ public class CharIterator implements Iterator<String> {
         }
         return true;
     }
+    
     @Override
     public String next() {
         String[] splitString = fromFile.split("");
