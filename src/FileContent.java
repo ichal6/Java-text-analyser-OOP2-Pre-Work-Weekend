@@ -1,5 +1,10 @@
 package src;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.Iterator;
 
 public class FileContent implements IterableText {
@@ -8,19 +13,37 @@ public class FileContent implements IterableText {
     public String fileContent;
 
     FileContent(boolean toCharIterator, String filename){
-        
-        readFromFile();
         this.filename = filename;
-        this.fileContent = "This is example string It is example text in this String";
+        try {
+            readFromFile();
+        } catch (FileNotFoundException e) {
+            //TODO: handle exception
+        } catch (NullPointerException e){
+
+        }
+        
+        //this.fileContent = "This is example string It is example text in this String";
         this.fileContent = this.fileContent.toLowerCase();
         if(toCharIterator){
             removeWhiteSpaces();
         }      
     }
 
-    private void readFromFile(){
+    private void readFromFile() throws FileNotFoundException, NullPointerException{
         // Implement methods to read from file and assign to fileContent value
+        File file = new File(filename); 
+  
+        BufferedReader br = new BufferedReader(new FileReader(file)); 
         
+        try {
+            while (br.ready()){
+                fileContent += br.readLine();
+            }
+            br.close();
+        } catch (IOException e) {
+            System.err.println("Błędy Panie ");
+        }
+        //System.out.println(fileContent);
     }
 
     private void removeWhiteSpaces(){
