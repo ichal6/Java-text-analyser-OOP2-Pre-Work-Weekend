@@ -33,13 +33,13 @@ public class StatisticalAnalysis {
             statisticalAnalysis = new CharIterator(oneFile);
             addToDic(dicOfChar);
 
-            calculateValues(dicOfWord, dicOfChar);
+            calculateValues(dicOfWord, dicOfChar, oneFile);
             
         }
 
     }
 
-    private void calculateValues(HashMap<String, Integer> dicOfWord, HashMap<String, Integer> dicOfChar){
+    private void calculateValues(HashMap<String, Integer> dicOfWord, HashMap<String, Integer> dicOfChar, String filename){
             dicOfElem = dicOfWord;
             int countOfWords = size();
             int dictSize = dictionarySize();
@@ -54,7 +54,7 @@ public class StatisticalAnalysis {
             Double percentOfVowels = (countOfVowels / countOfChars) * Double.valueOf(100.0);
             double countRatioAE = (double)countOf("A")/(double)countOf("E");
             
-
+            System.out.println("==" + filename + "==");
             System.out.println("Char count: " + countOfChars);
             System.out.println("Word count: " + countOfWords);
             System.out.println("Dict size: " + dictSize);
