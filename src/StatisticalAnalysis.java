@@ -1,8 +1,10 @@
 package src;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Set;
 
 public class StatisticalAnalysis {
@@ -10,18 +12,22 @@ public class StatisticalAnalysis {
     public Iterator<String>  statisticalAnalysis;
 
     private HashMap<String, Integer> dicOfElem;
-    private HashMap<String, Integer> dicOfWord;
-    private HashMap<String, Integer> dicOfChar;
 
-    public StatisticalAnalysis(String[] filename){
-        dicOfWord = new HashMap<>();
-        dicOfChar = new HashMap<>();
+    private List<HashMap<String, Integer>> arrayOfDics;
 
-        statisticalAnalysis = new WordIterator();
-        addToDic(dicOfWord);
+    public StatisticalAnalysis(String[] filenames){
+        HashMap<String, Integer> dicOfWord = new HashMap<>();
+        HashMap<String, Integer> dicOfChar = new HashMap<>();
+        arrayOfDics = new ArrayList<HashMap<String, Integer>>();
 
-        statisticalAnalysis = new CharIterator();
-        addToDic(dicOfChar);
+        for(String oneFile : filenames){
+            statisticalAnalysis = new WordIterator(oneFile);
+            addToDic(dicOfWord);
+
+            statisticalAnalysis = new CharIterator(oneFile);
+            addToDic(dicOfChar);
+        }
+        
 
         dicOfElem = dicOfChar;
         //Move to View bottom code
@@ -41,6 +47,7 @@ public class StatisticalAnalysis {
                 dic.put(word, 1);
             }
         }
+        arrayOfDics.add(dic);
     }
 
     public int countOf(String... elems){
