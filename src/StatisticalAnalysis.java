@@ -73,7 +73,7 @@ public class StatisticalAnalysis {
             view.print(String.format("/'love/' count: %d", countOfLove));
             view.print(String.format("/'hate/' count: %d", countOfHate));
             view.print(String.format("/'music/' count: %d", countOfMusic));
-            view.print(String.format("vowels %% : %f", percentOfVowels));
+            view.print(String.format("vowels %% : %d", percentOfVowels.intValue()));
             view.print(String.format("a:e count ratio: %f", countRatioAE));
             percentOfAlphabet(dicOfElem);
     }
