@@ -66,7 +66,7 @@ public class StatisticalAnalysis {
             double countRatioAE = (double)countOf("A")/(double)countOf("E");
             
             view.print(String.format("==%s==", filename));
-            view.print(String.format("Char count: %f", countOfChars));
+            view.print(String.format("Char count: %d", countOfChars.intValue()));
             view.print(String.format("Word count: %d", countOfWords));
             view.print(String.format("Dict size: %d", dictSize));
             view.print("Most used words (>1%): ", mostUsedWords);
@@ -74,7 +74,7 @@ public class StatisticalAnalysis {
             view.print(String.format("/'hate/' count: %d", countOfHate));
             view.print(String.format("/'music/' count: %d", countOfMusic));
             view.print(String.format("vowels %% : %d", percentOfVowels.intValue()));
-            view.print(String.format("a:e count ratio: %f", countRatioAE));
+            view.print(String.format("a:e count ratio: %.2f", countRatioAE));
             percentOfAlphabet(dicOfElem);
     }
 
