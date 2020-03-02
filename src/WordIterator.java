@@ -8,7 +8,7 @@ public class WordIterator implements Iterator<String> {
     public FileContent wordIterator;
     private String fromFile;
     private String[] splitFromFile;
-    private static int count;
+    private int count;
 
     WordIterator(String oneFile) throws FileNotFoundException, NullPointerException, IOException{
         wordIterator = new FileContent(false, oneFile);

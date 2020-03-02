@@ -8,7 +8,7 @@ public class CharIterator implements Iterator<String> {
     public FileContent charIterator;
     private String fromFile;
     private String[] splitFromFile;
-    private static int count;
+    private int count;
 
     CharIterator(String oneFile) throws FileNotFoundException, NullPointerException, IOException{
         charIterator = new FileContent(true, oneFile) ;
