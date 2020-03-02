@@ -1,22 +1,14 @@
 package src;
 
-import java.util.List;
-import java.util.Map;
+import java.util.Set;
 
 public class View {
-    public void print(Number num){
-
-    }
-
     public void print(String str){
-
+        System.out.println(str);
     }
 
-    public void print(List<String> list){
-
-    }
-
-    public void print(Map<String, Integer> map, int i){
-
+    public void print(String text, Set<String> set){
+        System.out.print(text);
+        System.out.println(set);
     }
 }
