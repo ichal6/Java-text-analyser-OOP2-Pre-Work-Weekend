@@ -1,13 +1,15 @@
 package src;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Iterator;
 
 public class CharIterator implements Iterator<String> {
     public FileContent charIterator;
     private String fromFile;
 
-    CharIterator(String oneFile){
-        charIterator = new FileContent(true, oneFile);
+    CharIterator(String oneFile) throws FileNotFoundException, NullPointerException, IOException{
+        charIterator = new FileContent(true, oneFile) ;
         fromFile = charIterator.fileContent;
     }
 

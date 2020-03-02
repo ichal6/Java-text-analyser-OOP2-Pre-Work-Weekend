@@ -1,5 +1,7 @@
 package src;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -30,16 +32,22 @@ public class StatisticalAnalysis {
 
     private void fillDictionary(String[] filenames){
         for(String oneFile : filenames){
-            statisticalAnalysis = new WordIterator(oneFile);
-            addToDic(dicOfWord);
+            try{
+                statisticalAnalysis = new WordIterator(oneFile);
+                addToDic(dicOfWord);
 
-            statisticalAnalysis = new CharIterator(oneFile);
-            addToDic(dicOfChar);
+                statisticalAnalysis = new CharIterator(oneFile);
+                addToDic(dicOfChar);
 
-            calculateValues(dicOfWord, dicOfChar, oneFile);
-            
+                calculateValues(dicOfWord, dicOfChar, oneFile);
+            } catch (FileNotFoundException e) {
+                view.print("File not found! Please input the correct path.");
+            } catch (NullPointerException e){
+                view.print("This program is working only with parameters. Please insert file name as paramter.");
+            } catch (IOException e){
+                view.print("The problem with read your file.");
+            }
         }
-
     }
 
     private void calculateValues(HashMap<String, Integer> dicOfWord, HashMap<String, Integer> dicOfChar, String filename){

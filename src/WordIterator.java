@@ -1,12 +1,14 @@
 package src;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Iterator;
 
 public class WordIterator implements Iterator<String> {
     public FileContent wordIterator;
     private String fromFile;
 
-    WordIterator(String oneFile){
+    WordIterator(String oneFile) throws FileNotFoundException, NullPointerException, IOException{
         wordIterator = new FileContent(false, oneFile);
         fromFile = wordIterator.fileContent;
     }
