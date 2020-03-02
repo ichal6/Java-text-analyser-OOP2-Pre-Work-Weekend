@@ -39,7 +39,7 @@ public class StatisticalAnalysis {
                 statisticalAnalysis = new CharIterator(oneFile);
                 addToDic(dicOfChar);
 
-                calculateValues(dicOfWord, dicOfChar, oneFile);
+                calculateValuesAndPrint(dicOfWord, dicOfChar, oneFile);
             } catch (FileNotFoundException e) {
                 view.print("File not found! Please input the correct path.");
             } catch (NullPointerException e){
@@ -50,7 +50,7 @@ public class StatisticalAnalysis {
         }
     }
 
-    private void calculateValues(HashMap<String, Integer> dicOfWord, HashMap<String, Integer> dicOfChar, String filename){
+    private void calculateValuesAndPrint(HashMap<String, Integer> dicOfWord, HashMap<String, Integer> dicOfChar, String filename){
             dicOfElem = dicOfWord;
             int countOfWords = size();
             int dictSize = dictionarySize();
