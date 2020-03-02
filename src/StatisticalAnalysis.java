@@ -70,9 +70,9 @@ public class StatisticalAnalysis {
             view.print(String.format("Word count: %d", countOfWords));
             view.print(String.format("Dict size: %d", dictSize));
             view.print("Most used words (>1%): ", mostUsedWords);
-            view.print(String.format("/'love/' count: %d", countOfLove));
-            view.print(String.format("/'hate/' count: %d", countOfHate));
-            view.print(String.format("/'music/' count: %d", countOfMusic));
+            view.print(String.format("'love' count: %d", countOfLove));
+            view.print(String.format("'hate' count: %d", countOfHate));
+            view.print(String.format("'music' count: %d", countOfMusic));
             view.print(String.format("vowels %% : %d", percentOfVowels.intValue()));
             view.print(String.format("a:e count ratio: %.2f", countRatioAE));
             percentOfAlphabet(dicOfElem);
