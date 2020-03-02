@@ -11,6 +11,8 @@ public class StatisticalAnalysis {
 
     public Iterator<String>  statisticalAnalysis;
 
+    private View view;
+
     private HashMap<String, Integer> dicOfElem;
     private HashMap<String, Integer> dicOfWord;
     private HashMap<String, Integer> dicOfChar;
@@ -21,6 +23,7 @@ public class StatisticalAnalysis {
         dicOfWord = new HashMap<>();
         dicOfChar = new HashMap<>();
         arrayOfDics = new ArrayList<HashMap<String, Integer>>();
+        view = new View();
 
         fillDictionary(filenames);
     }
@@ -54,16 +57,16 @@ public class StatisticalAnalysis {
             Double percentOfVowels = (countOfVowels / countOfChars) * Double.valueOf(100.0);
             double countRatioAE = (double)countOf("A")/(double)countOf("E");
             
-            System.out.println("==" + filename + "==");
-            System.out.println("Char count: " + countOfChars);
-            System.out.println("Word count: " + countOfWords);
-            System.out.println("Dict size: " + dictSize);
-            System.out.println("Most used words (>1%): " + mostUsedWords);
-            System.out.println("/'love/' count: " + countOfLove);
-            System.out.println("/'hate/' count: " + countOfHate);
-            System.out.println("/'music/' count: " + countOfMusic);
-            System.out.println("vowels %: " + percentOfVowels);
-            System.out.println("a:e count ratio: " + countRatioAE);
+            view.print(String.format("==%s==", filename));
+            view.print(String.format("Char count: %f", countOfChars));
+            view.print(String.format("Word count: %d", countOfWords));
+            view.print(String.format("Dict size: %d", dictSize));
+            view.print("Most used words (>1%): ", mostUsedWords);
+            view.print(String.format("/'love/' count: %d", countOfLove));
+            view.print(String.format("/'hate/' count: %d", countOfHate));
+            view.print(String.format("/'music/' count: %d", countOfMusic));
+            view.print(String.format("vowels %% : %f", percentOfVowels));
+            view.print(String.format("a:e count ratio: %f", countRatioAE));
             percentOfAlphabet(dicOfElem);
     }
 
@@ -83,14 +86,15 @@ public class StatisticalAnalysis {
     private void percentOfAlphabet(HashMap<String, Integer> dic){
         String alphabetAsString = ("A B C D E F G H I J K L M N O P Q R S T U V W X Y Z").toLowerCase();
         String[] alphabet = alphabetAsString.split(" ");
+        String textOutput = "";
         for(String letter: alphabet){
             if(dic.containsKey(letter)){
                 int count = dic.get(letter);
                 double percentValue = ((double)count / (double) size()) * 100.0;
-                System.out.print(String.format("[ %s -> %.2f] ", letter , percentValue)); 
+                textOutput += String.format("[ %s -> %.2f] ", letter , percentValue); 
             }
         }
-        System.out.println();
+        view.print(textOutput);
     }
 
     public int countOf(String... elems){
