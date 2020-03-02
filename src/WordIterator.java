@@ -23,7 +23,7 @@ public class WordIterator implements Iterator<String> {
 
     @Override
     public String next() {
-        String[] splitString = fromFile.split(" ");
+        String[] splitString = fromFile.split("\\s+");
         StringBuffer sb = new StringBuffer();
         for(int i = 1; i < splitString.length; i++) {
             sb.append(splitString[i] + " ");
