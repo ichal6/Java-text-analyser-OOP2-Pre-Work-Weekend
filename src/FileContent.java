@@ -14,13 +14,15 @@ public class FileContent implements IterableText {
 
     FileContent(boolean toCharIterator, String filename) throws FileNotFoundException, NullPointerException, IOException{
         this.filename = filename;
+        this.fileContent = "";
         
         readFromFile();
         
         this.fileContent = this.fileContent.toLowerCase();
         if(toCharIterator){
             removeWhiteSpaces();
-        }      
+        }
+        //System.out.println(fileContent);    
     }
 
     private void readFromFile() throws FileNotFoundException, NullPointerException, IOException{
@@ -30,7 +32,7 @@ public class FileContent implements IterableText {
         BufferedReader br = new BufferedReader(new FileReader(file)); 
         
         while (br.ready()){
-            fileContent += br.readLine();
+            fileContent += br.readLine() + " ";
         }
         br.close();
         
