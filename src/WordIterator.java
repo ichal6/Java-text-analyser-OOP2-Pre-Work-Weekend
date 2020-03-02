@@ -7,15 +7,19 @@ import java.util.Iterator;
 public class WordIterator implements Iterator<String> {
     public FileContent wordIterator;
     private String fromFile;
+    private String[] splitFromFile;
+    private static int count;
 
     WordIterator(String oneFile) throws FileNotFoundException, NullPointerException, IOException{
         wordIterator = new FileContent(false, oneFile);
         fromFile = wordIterator.fileContent;
+        splitFromFile = fromFile.split("\\s+");
+        count = 0;
     }
 
     @Override
     public boolean hasNext() {
-        if(fromFile.equals("") || fromFile.equals(" ")){
+        if(count >= splitFromFile.length){
             return false;
         }
         return true;
@@ -23,13 +27,6 @@ public class WordIterator implements Iterator<String> {
 
     @Override
     public String next() {
-        String[] splitString = fromFile.split("\\s+");
-        StringBuffer sb = new StringBuffer();
-        for(int i = 1; i < splitString.length; i++) {
-            sb.append(splitString[i] + " ");
-        }
-        fromFile = sb.toString();
-        return splitString[0];
+        return splitFromFile[count++];
     }
-    
 }
