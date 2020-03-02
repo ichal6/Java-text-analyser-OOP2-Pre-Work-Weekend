@@ -4,10 +4,10 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
+import java.util.TreeSet;
 
 public class StatisticalAnalysis {
 
@@ -130,7 +130,7 @@ public class StatisticalAnalysis {
     }
 
     public Set<String> occurMoreThan(Integer n){
-        Set<String> newSet = new HashSet<String>();
+        Set<String> newSet = new TreeSet<String>();
         Double size = Double.valueOf(size());
         Double value;
         Double percent = Double.valueOf(0);
