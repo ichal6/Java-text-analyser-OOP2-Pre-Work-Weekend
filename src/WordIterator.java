@@ -11,7 +11,7 @@ public class WordIterator implements Iterator<String> {
     private int count;
 
     WordIterator(String oneFile) throws FileNotFoundException, NullPointerException, IOException{
-        wordIterator = new FileContent(false, oneFile);
+        wordIterator = new FileContent(oneFile);
         fromFile = wordIterator.fileContent;
         splitFromFile = fromFile.split("\\s+");
         count = 0;

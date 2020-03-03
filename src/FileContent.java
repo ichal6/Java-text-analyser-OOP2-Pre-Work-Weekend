@@ -12,17 +12,13 @@ public class FileContent implements IterableText {
     private String filename;
     public String fileContent;
 
-    FileContent(boolean toCharIterator, String filename) throws FileNotFoundException, NullPointerException, IOException{
+    FileContent(String filename) throws FileNotFoundException, NullPointerException, IOException{
         this.filename = filename;
         this.fileContent = "";
         
         readFromFile();
         
-        this.fileContent = this.fileContent.toLowerCase();
-        if(toCharIterator){
-            removeWhiteSpaces();
-        }
-        //System.out.println(fileContent);    
+        this.fileContent = this.fileContent.toLowerCase();   
     }
 
     private void readFromFile() throws FileNotFoundException, NullPointerException, IOException{
@@ -36,15 +32,6 @@ public class FileContent implements IterableText {
         }
         br.close();
         
-    }
-
-    private void removeWhiteSpaces(){
-        String[] splitString = fileContent.split(" ");
-        StringBuffer sb = new StringBuffer();
-        for(int i = 0; i < splitString.length; i++) {
-            sb.append(splitString[i]);
-        }
-        fileContent = sb.toString();
     }
 
     @Override
