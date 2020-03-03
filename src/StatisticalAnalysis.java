@@ -11,7 +11,7 @@ import java.util.TreeSet;
 
 public class StatisticalAnalysis {
 
-    public Iterator<String>  statisticalAnalysis;
+    private Iterator<String>  statisticalAnalysis;
 
     private View view;
 
@@ -21,24 +21,30 @@ public class StatisticalAnalysis {
 
     private List<HashMap<String, Integer>> arrayOfDics;
 
-    public StatisticalAnalysis(String[] filenames){
+    public StatisticalAnalysis(Iterator<String> iteratorToAnalysis){
+        long startTime = startTime();
         dicOfWord = new HashMap<>();
         dicOfChar = new HashMap<>();
         arrayOfDics = new ArrayList<HashMap<String, Integer>>();
         view = new View();
 
-        fillDictionary(filenames);
+        fillDictionary(Application.filenames);
+        view.print(String.format("Benchmark time: %.3f seconds", stopTime(startTime)));
     }
 
     private void fillDictionary(String[] filenames){
+        
         for(String oneFile : filenames){
             try{
                 dicOfWord.clear();
                 dicOfChar.clear();
-                statisticalAnalysis = new WordIterator(oneFile);
+
+                FileContent fileContent = new FileContent(oneFile);
+
+                statisticalAnalysis = new WordIterator(fileContent);
                 addToDic(dicOfWord);
 
-                statisticalAnalysis = new CharIterator(oneFile);
+                statisticalAnalysis = new CharIterator(fileContent);
                 addToDic(dicOfChar);
 
                 calculateValuesAndPrint(dicOfWord, dicOfChar, oneFile);
@@ -50,6 +56,19 @@ public class StatisticalAnalysis {
                 view.print("The problem with read your file.");
             }
         }
+    }
+
+    private void addToDic(HashMap<String, Integer> dic){
+        while(statisticalAnalysis.hasNext()){
+            String word = statisticalAnalysis.next();
+            if(dic.containsKey(word)){
+                int count = dic.get(word);
+                dic.put(word, ++count);
+            }else{
+                dic.put(word, 1);
+            }
+        }
+        arrayOfDics.add(dic);
     }
 
     private void calculateValuesAndPrint(HashMap<String, Integer> dicOfWord, HashMap<String, Integer> dicOfChar, String filename){
@@ -78,19 +97,6 @@ public class StatisticalAnalysis {
             view.print(String.format("vowels %% : %d", percentOfVowels.intValue()));
             view.print(String.format("a:e count ratio: %.2f", countRatioAE));
             percentOfAlphabet(dicOfElem);
-    }
-
-    private void addToDic(HashMap<String, Integer> dic){
-        while(statisticalAnalysis.hasNext()){
-            String word = statisticalAnalysis.next();
-            if(dic.containsKey(word)){
-                int count = dic.get(word);
-                dic.put(word, ++count);
-            }else{
-                dic.put(word, 1);
-            }
-        }
-        arrayOfDics.add(dic);
     }
 
     private void percentOfAlphabet(HashMap<String, Integer> dic){
@@ -144,5 +150,16 @@ public class StatisticalAnalysis {
             }
         }
         return newSet;
+    }
+
+    private static long startTime(){
+        return System.nanoTime();
+    }
+
+    private static Double stopTime(long startTime){
+        long endTime = System.nanoTime();
+        Double start = Double.valueOf(startTime);
+        Double end = Double.valueOf(endTime);
+        return (end - start)/1000000000.0;
     }
 }

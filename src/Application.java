@@ -1,15 +1,14 @@
 package src;
 
-public class Application{
-    public static void main(String[] args){
-        long startTime = System.nanoTime();
-        new StatisticalAnalysis(args);
-        long endTime = System.nanoTime();
-        Double start = Double.valueOf(startTime);
-        Double end = Double.valueOf(endTime);
-        System.out.println((end - start)/1000000000.0 + " seconds");
+import java.util.Iterator;
 
+public class Application {
+    static String[] filenames;
+
+    public static void main(String[] args) {
+        filenames = args;
+        
+        Iterator<String>  iteratorToAnalysis = null;
+        new StatisticalAnalysis(iteratorToAnalysis);
     }
-
-
 }
