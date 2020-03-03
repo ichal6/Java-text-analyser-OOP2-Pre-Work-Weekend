@@ -10,15 +10,15 @@ import java.util.Iterator;
 public class FileContent implements IterableText {
 
     private String filename;
-    public String fileContent;
+    public String contentFromFile;
 
     FileContent(String filename) throws FileNotFoundException, NullPointerException, IOException{
         this.filename = filename;
-        this.fileContent = "";
+        this.contentFromFile = "";
         
         readFromFile();
         
-        this.fileContent = this.fileContent.toLowerCase();   
+        this.contentFromFile = this.contentFromFile.toLowerCase();   
     }
 
     private void readFromFile() throws FileNotFoundException, NullPointerException, IOException{
@@ -28,7 +28,7 @@ public class FileContent implements IterableText {
         BufferedReader br = new BufferedReader(new FileReader(file)); 
         
         while (br.ready()){
-            fileContent += br.readLine() + " ";
+            contentFromFile += br.readLine() + " ";
         }
         br.close();
         
@@ -48,6 +48,5 @@ public class FileContent implements IterableText {
 
     public String getFilename(){
         return filename;
-    }
-    
-} 
+    }  
+}

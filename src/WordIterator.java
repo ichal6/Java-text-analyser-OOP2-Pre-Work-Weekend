@@ -9,8 +9,8 @@ public class WordIterator implements Iterator<String> {
     private String[] splitFromFile;
     private int count;
 
-    WordIterator(FileContent charIterator) throws FileNotFoundException, NullPointerException, IOException{
-        fromFile = charIterator.fileContent;
+    WordIterator(FileContent fileContent) throws FileNotFoundException, NullPointerException, IOException{
+        fromFile = fileContent.contentFromFile;
         splitFromFile = fromFile.split("\\s+");
         count = 0;
     }

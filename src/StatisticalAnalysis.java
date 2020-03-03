@@ -11,7 +11,7 @@ import java.util.TreeSet;
 
 public class StatisticalAnalysis {
 
-    private Iterator<String>  statisticalAnalysis;
+    private Iterator<String>  iteratorStatisticalAnalysis;
 
     private View view;
 
@@ -41,10 +41,10 @@ public class StatisticalAnalysis {
 
                 FileContent fileContent = new FileContent(oneFile);
 
-                statisticalAnalysis = new WordIterator(fileContent);
+                iteratorStatisticalAnalysis = new WordIterator(fileContent);
                 addToDic(dicOfWord);
 
-                statisticalAnalysis = new CharIterator(fileContent);
+                iteratorStatisticalAnalysis = new CharIterator(fileContent);
                 addToDic(dicOfChar);
 
                 calculateValuesAndPrint(dicOfWord, dicOfChar, oneFile);
@@ -59,8 +59,8 @@ public class StatisticalAnalysis {
     }
 
     private void addToDic(HashMap<String, Integer> dic){
-        while(statisticalAnalysis.hasNext()){
-            String word = statisticalAnalysis.next();
+        while(iteratorStatisticalAnalysis.hasNext()){
+            String word = iteratorStatisticalAnalysis.next();
             if(dic.containsKey(word)){
                 int count = dic.get(word);
                 dic.put(word, ++count);
