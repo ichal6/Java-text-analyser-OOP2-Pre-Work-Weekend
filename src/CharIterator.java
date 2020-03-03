@@ -5,7 +5,6 @@ import java.io.IOException;
 import java.util.Iterator;
 
 public class CharIterator implements Iterator<String> {
-    public FileContent charIterator;
     private String fromFile;
     private String[] splitFromFile;
     private int count;
