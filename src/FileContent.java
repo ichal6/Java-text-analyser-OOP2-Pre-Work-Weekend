@@ -10,7 +10,7 @@ import java.util.Iterator;
 public class FileContent implements IterableText {
 
     private String filename;
-    public String contentFromFile;
+    String contentFromFile;
 
     FileContent(String filename) throws FileNotFoundException, NullPointerException, IOException{
         this.filename = filename;
