@@ -5,14 +5,12 @@ import java.io.IOException;
 import java.util.Iterator;
 
 public class WordIterator implements Iterator<String> {
-    public FileContent wordIterator;
     private String fromFile;
     private String[] splitFromFile;
     private int count;
 
-    WordIterator(String oneFile) throws FileNotFoundException, NullPointerException, IOException{
-        wordIterator = new FileContent(oneFile);
-        fromFile = wordIterator.fileContent;
+    WordIterator(FileContent charIterator) throws FileNotFoundException, NullPointerException, IOException{
+        fromFile = charIterator.fileContent;
         splitFromFile = fromFile.split("\\s+");
         count = 0;
     }

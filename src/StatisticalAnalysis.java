@@ -36,12 +36,12 @@ public class StatisticalAnalysis {
             try{
                 dicOfWord.clear();
                 dicOfChar.clear();
-
-                statisticalAnalysis = new WordIterator(oneFile);
+                FileContent fileContent = new FileContent(oneFile);
+                statisticalAnalysis = new WordIterator(fileContent);
                 addToDic(dicOfWord);
 
-                FileContent charIterator = new FileContent(oneFile) ;
-                statisticalAnalysis = new CharIterator(charIterator);
+                //FileContent charIterator = new FileContent(oneFile) ;
+                statisticalAnalysis = new CharIterator(fileContent);
                 addToDic(dicOfChar);
 
                 calculateValuesAndPrint(dicOfWord, dicOfChar, oneFile);
