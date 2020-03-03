@@ -34,15 +34,6 @@ public class FileContent implements IterableText {
         
     }
 
-    private void removeWhiteSpaces(){
-        String[] splitString = fileContent.split(" ");
-        StringBuffer sb = new StringBuffer();
-        for(int i = 0; i < splitString.length; i++) {
-            sb.append(splitString[i]);
-        }
-        fileContent = sb.toString();
-    }
-
     @Override
     public Iterator<String> charIterator() throws FileNotFoundException, NullPointerException, IOException {
         Iterator<String> newIterator = new CharIterator(filename); 
