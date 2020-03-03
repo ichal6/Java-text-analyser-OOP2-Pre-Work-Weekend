@@ -31,14 +31,17 @@ public class StatisticalAnalysis {
     }
 
     private void fillDictionary(String[] filenames){
+        
         for(String oneFile : filenames){
             try{
                 dicOfWord.clear();
                 dicOfChar.clear();
+
                 statisticalAnalysis = new WordIterator(oneFile);
                 addToDic(dicOfWord);
 
-                statisticalAnalysis = new CharIterator(oneFile);
+                FileContent charIterator = new FileContent(oneFile) ;
+                statisticalAnalysis = new CharIterator(charIterator);
                 addToDic(dicOfChar);
 
                 calculateValuesAndPrint(dicOfWord, dicOfChar, oneFile);

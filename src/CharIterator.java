@@ -10,8 +10,7 @@ public class CharIterator implements Iterator<String> {
     private String[] splitFromFile;
     private int count;
 
-    CharIterator(String oneFile) throws FileNotFoundException, NullPointerException, IOException{
-        charIterator = new FileContent(oneFile) ;
+    CharIterator(FileContent charIterator) throws FileNotFoundException, NullPointerException, IOException{
         fromFile = charIterator.fileContent;
         removeWhiteSpaces();
         splitFromFile = fromFile.split("");

@@ -36,7 +36,7 @@ public class FileContent implements IterableText {
 
     @Override
     public Iterator<String> charIterator() throws FileNotFoundException, NullPointerException, IOException {
-        Iterator<String> newIterator = new CharIterator(filename); 
+        Iterator<String> newIterator = new CharIterator(new FileContent(filename)); 
         return newIterator;
     }
 
