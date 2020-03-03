@@ -1,9 +1,19 @@
 package src;
 
-public class Application{
-    public static void main(String[] args){
+import java.util.Iterator;
+
+public class Application {
+    static String[] filenames;
+    //static long timeRun;
+
+    public static void main(String[] args) {
         long startTime = startTime();
-        new StatisticalAnalysis(args);
+
+        filenames = args;
+        
+        Iterator<String>  iteratorToAnalysis = null;
+        new StatisticalAnalysis(iteratorToAnalysis);
+        
         stopTime(startTime);
     }
 

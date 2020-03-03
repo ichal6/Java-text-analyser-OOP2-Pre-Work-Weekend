@@ -11,7 +11,7 @@ import java.util.TreeSet;
 
 public class StatisticalAnalysis {
 
-    public Iterator<String>  statisticalAnalysis;
+    private Iterator<String>  statisticalAnalysis;
 
     private View view;
 
@@ -21,13 +21,13 @@ public class StatisticalAnalysis {
 
     private List<HashMap<String, Integer>> arrayOfDics;
 
-    public StatisticalAnalysis(String[] filenames){
+    public StatisticalAnalysis(Iterator<String> iteratorToAnalysis){
         dicOfWord = new HashMap<>();
         dicOfChar = new HashMap<>();
         arrayOfDics = new ArrayList<HashMap<String, Integer>>();
         view = new View();
 
-        fillDictionary(filenames);
+        fillDictionary(Application.filenames);
     }
 
     private void fillDictionary(String[] filenames){
@@ -36,11 +36,12 @@ public class StatisticalAnalysis {
             try{
                 dicOfWord.clear();
                 dicOfChar.clear();
+
                 FileContent fileContent = new FileContent(oneFile);
+
                 statisticalAnalysis = new WordIterator(fileContent);
                 addToDic(dicOfWord);
 
-                //FileContent charIterator = new FileContent(oneFile) ;
                 statisticalAnalysis = new CharIterator(fileContent);
                 addToDic(dicOfChar);
 
@@ -53,6 +54,19 @@ public class StatisticalAnalysis {
                 view.print("The problem with read your file.");
             }
         }
+    }
+
+    private void addToDic(HashMap<String, Integer> dic){
+        while(statisticalAnalysis.hasNext()){
+            String word = statisticalAnalysis.next();
+            if(dic.containsKey(word)){
+                int count = dic.get(word);
+                dic.put(word, ++count);
+            }else{
+                dic.put(word, 1);
+            }
+        }
+        arrayOfDics.add(dic);
     }
 
     private void calculateValuesAndPrint(HashMap<String, Integer> dicOfWord, HashMap<String, Integer> dicOfChar, String filename){
@@ -81,19 +95,6 @@ public class StatisticalAnalysis {
             view.print(String.format("vowels %% : %d", percentOfVowels.intValue()));
             view.print(String.format("a:e count ratio: %.2f", countRatioAE));
             percentOfAlphabet(dicOfElem);
-    }
-
-    private void addToDic(HashMap<String, Integer> dic){
-        while(statisticalAnalysis.hasNext()){
-            String word = statisticalAnalysis.next();
-            if(dic.containsKey(word)){
-                int count = dic.get(word);
-                dic.put(word, ++count);
-            }else{
-                dic.put(word, 1);
-            }
-        }
-        arrayOfDics.add(dic);
     }
 
     private void percentOfAlphabet(HashMap<String, Integer> dic){
