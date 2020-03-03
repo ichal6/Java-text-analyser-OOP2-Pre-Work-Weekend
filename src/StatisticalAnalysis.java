@@ -22,12 +22,14 @@ public class StatisticalAnalysis {
     private List<HashMap<String, Integer>> arrayOfDics;
 
     public StatisticalAnalysis(Iterator<String> iteratorToAnalysis){
+        long startTime = startTime();
         dicOfWord = new HashMap<>();
         dicOfChar = new HashMap<>();
         arrayOfDics = new ArrayList<HashMap<String, Integer>>();
         view = new View();
 
         fillDictionary(Application.filenames);
+        view.print(String.format("Benchmark time: %.3f seconds", stopTime(startTime)));
     }
 
     private void fillDictionary(String[] filenames){
@@ -148,5 +150,16 @@ public class StatisticalAnalysis {
             }
         }
         return newSet;
+    }
+
+    private static long startTime(){
+        return System.nanoTime();
+    }
+
+    private static Double stopTime(long startTime){
+        long endTime = System.nanoTime();
+        Double start = Double.valueOf(startTime);
+        Double end = Double.valueOf(endTime);
+        return (end - start)/1000000000.0;
     }
 }
