@@ -11,10 +11,20 @@ public class CharIterator implements Iterator<String> {
     private int count;
 
     CharIterator(String oneFile) throws FileNotFoundException, NullPointerException, IOException{
-        charIterator = new FileContent(true, oneFile) ;
+        charIterator = new FileContent(oneFile) ;
         fromFile = charIterator.fileContent;
+        removeWhiteSpaces();
         splitFromFile = fromFile.split("");
         count = 0;
+    }
+
+    private void removeWhiteSpaces(){
+        String[] splitString = fromFile.split(" ");
+        StringBuffer sb = new StringBuffer();
+        for(int i = 0; i < splitString.length; i++) {
+            sb.append(splitString[i]);
+        }
+        fromFile = sb.toString();
     }
 
     @Override
