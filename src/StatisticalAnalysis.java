@@ -8,9 +8,7 @@ import java.util.TreeSet;
 public class StatisticalAnalysis {
 
     private Iterator<String>  iteratorStatisticalAnalysis;
-
     private View view;
-
     private HashMap<String, Integer> dicOfElem;
 
     public StatisticalAnalysis(Iterator<String> iteratorToAnalysis){   
@@ -91,7 +89,6 @@ public class StatisticalAnalysis {
                count += dicOfElem.get(oneString);
             }
         }
-        
         return count;
     }
 
@@ -121,5 +118,4 @@ public class StatisticalAnalysis {
         }
         return newSet;
     }
-
 }
