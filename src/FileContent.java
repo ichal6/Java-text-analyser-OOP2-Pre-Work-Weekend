@@ -12,7 +12,7 @@ public class FileContent implements IterableText {
     private String filename;
     String contentFromFile;
 
-    FileContent(String filename) throws FileNotFoundException, NullPointerException, IOException{
+    FileContent(String filename) throws FileNotFoundException, IOException{
         this.filename = filename;
         this.contentFromFile = "";
         
@@ -21,7 +21,7 @@ public class FileContent implements IterableText {
         this.contentFromFile = this.contentFromFile.toLowerCase();   
     }
 
-    private void readFromFile() throws FileNotFoundException, NullPointerException, IOException{
+    private void readFromFile() throws FileNotFoundException, IOException{
         // Implement methods to read from file and assign to fileContent value
         File file = new File(filename); 
   
