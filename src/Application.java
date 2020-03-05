@@ -17,9 +17,9 @@ public class Application {
                 long startTime = startTime();
                 view.print(String.format("==%s==", oneFile));
                 FileContent fileContent = new FileContent(oneFile);
-                iterator = new WordIterator(fileContent);
+                iterator = fileContent.wordIterator();
                 new StatisticalAnalysis(iterator);
-                iterator = new CharIterator(fileContent);
+                iterator = fileContent.charIterator();
                 new StatisticalAnalysis(iterator);
                 view.print(String.format("Benchmark time: %.3f seconds", stopTime(startTime)));
             } catch (FileNotFoundException e) {
