@@ -12,7 +12,7 @@ public class FileContent implements IterableText {
     private String filename;
     String contentFromFile;
 
-    FileContent(String filename) throws FileNotFoundException, IOException{
+    public FileContent(String filename) throws FileNotFoundException, IOException{
         this.filename = filename;
         this.contentFromFile = "";
         
