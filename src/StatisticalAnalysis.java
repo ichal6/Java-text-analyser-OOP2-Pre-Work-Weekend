@@ -1,61 +1,30 @@
 package src;
 
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
-import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
 
 public class StatisticalAnalysis {
 
     private Iterator<String>  iteratorStatisticalAnalysis;
-
     private View view;
-
     private HashMap<String, Integer> dicOfElem;
-    private HashMap<String, Integer> dicOfWord;
-    private HashMap<String, Integer> dicOfChar;
 
-    private List<HashMap<String, Integer>> arrayOfDics;
-
-    public StatisticalAnalysis(Iterator<String> iteratorToAnalysis){
-        long startTime = startTime();
-        dicOfWord = new HashMap<>();
-        dicOfChar = new HashMap<>();
-        arrayOfDics = new ArrayList<HashMap<String, Integer>>();
+    public StatisticalAnalysis(Iterator<String> iteratorToAnalysis){   
+        dicOfElem = new HashMap<>();
         view = new View();
+        iteratorStatisticalAnalysis = iteratorToAnalysis;
 
-        fillDictionary(Application.filenames);
-        view.print(String.format("Benchmark time: %.3f seconds", stopTime(startTime)));
+        fillDictionary();
     }
 
-    private void fillDictionary(String[] filenames){
-        
-        for(String oneFile : filenames){
-            try{
-                dicOfWord.clear();
-                dicOfChar.clear();
+    private void fillDictionary(){
+            dicOfElem.clear();
 
-                FileContent fileContent = new FileContent(oneFile);
+            addToDic(dicOfElem);
 
-                iteratorStatisticalAnalysis = new WordIterator(fileContent);
-                addToDic(dicOfWord);
-
-                iteratorStatisticalAnalysis = new CharIterator(fileContent);
-                addToDic(dicOfChar);
-
-                calculateValuesAndPrint(dicOfWord, dicOfChar, oneFile);
-            } catch (FileNotFoundException e) {
-                view.print("File not found! Please input the correct path.");
-            } catch (NullPointerException e){
-                view.print("This program is working only with parameters. Please insert file name as paramter.");
-            } catch (IOException e){
-                view.print("The problem with read your file.");
-            }
-        }
+            calculateValuesAndPrint();
     }
 
     private void addToDic(HashMap<String, Integer> dic){
@@ -68,35 +37,34 @@ public class StatisticalAnalysis {
                 dic.put(word, 1);
             }
         }
-        arrayOfDics.add(dic);
     }
 
-    private void calculateValuesAndPrint(HashMap<String, Integer> dicOfWord, HashMap<String, Integer> dicOfChar, String filename){
-            dicOfElem = dicOfWord;
+    private void calculateValuesAndPrint(){
+        if(iteratorStatisticalAnalysis.getClass() == WordIterator.class){
             int countOfWords = size();
             int dictSize = dictionarySize();
             Set<String> mostUsedWords = occurMoreThan(1);
             int countOfLove = countOf("love");
             int countOfHate = countOf("hate");
             int countOfMusic = countOf("music");
-
-            dicOfElem = dicOfChar;
-            Double countOfChars = Double.valueOf(size());
-            Double countOfVowels = Double.valueOf(countOf("A", "E", "I", "O", "U"));
-            Double percentOfVowels = (countOfVowels / countOfChars) * Double.valueOf(100.0);
-            double countRatioAE = (double)countOf("A")/(double)countOf("E");
             
-            view.print(String.format("==%s==", filename));
-            view.print(String.format("Char count: %d", countOfChars.intValue()));
             view.print(String.format("Word count: %d", countOfWords));
             view.print(String.format("Dict size: %d", dictSize));
             view.print("Most used words (>1%): ", mostUsedWords);
             view.print(String.format("'love' count: %d", countOfLove));
             view.print(String.format("'hate' count: %d", countOfHate));
             view.print(String.format("'music' count: %d", countOfMusic));
+        }else{
+            Double countOfChars = Double.valueOf(size());
+            Double countOfVowels = Double.valueOf(countOf("A", "E", "I", "O", "U"));
+            Double percentOfVowels = (countOfVowels / countOfChars) * Double.valueOf(100.0);
+            double countRatioAE = (double)countOf("A")/(double)countOf("E");
+
+            view.print(String.format("Char count: %d", countOfChars.intValue()));
             view.print(String.format("vowels %% : %d", percentOfVowels.intValue()));
             view.print(String.format("a:e count ratio: %.2f", countRatioAE));
             percentOfAlphabet(dicOfElem);
+        }
     }
 
     private void percentOfAlphabet(HashMap<String, Integer> dic){
@@ -121,7 +89,6 @@ public class StatisticalAnalysis {
                count += dicOfElem.get(oneString);
             }
         }
-        
         return count;
     }
 
@@ -150,16 +117,5 @@ public class StatisticalAnalysis {
             }
         }
         return newSet;
-    }
-
-    private static long startTime(){
-        return System.nanoTime();
-    }
-
-    private static Double stopTime(long startTime){
-        long endTime = System.nanoTime();
-        Double start = Double.valueOf(startTime);
-        Double end = Double.valueOf(endTime);
-        return (end - start)/1000000000.0;
     }
 }
