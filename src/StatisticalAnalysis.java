@@ -1,9 +1,7 @@
 package src;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
-import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
 
@@ -15,27 +13,20 @@ public class StatisticalAnalysis {
 
     private HashMap<String, Integer> dicOfElem;
 
-    private List<HashMap<String, Integer>> arrayOfDics;
-
-    public StatisticalAnalysis(Iterator<String> iteratorToAnalysis){
-        
+    public StatisticalAnalysis(Iterator<String> iteratorToAnalysis){   
         dicOfElem = new HashMap<>();
-        arrayOfDics = new ArrayList<HashMap<String, Integer>>();
         view = new View();
         iteratorStatisticalAnalysis = iteratorToAnalysis;
 
         fillDictionary();
-        
     }
 
     private void fillDictionary(){
-
             dicOfElem.clear();
 
             addToDic(dicOfElem);
 
             calculateValuesAndPrint();
-
     }
 
     private void addToDic(HashMap<String, Integer> dic){
@@ -48,7 +39,6 @@ public class StatisticalAnalysis {
                 dic.put(word, 1);
             }
         }
-        arrayOfDics.add(dic);
     }
 
     private void calculateValuesAndPrint(){
