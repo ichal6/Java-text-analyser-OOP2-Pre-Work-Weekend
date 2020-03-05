@@ -11,21 +11,20 @@ public class Application {
 
     public static void main(String[] args) {
         view = new View();
-        filenames = args;
         for(String oneFile : args){
             try{
                 long startTime = startTime();
-                view.print(String.format("==%s==", oneFile));
                 FileContent fileContent = new FileContent(oneFile);
+                view.print(String.format("==%s==", fileContent.getFilename()));
                 iterator = fileContent.wordIterator();
                 new StatisticalAnalysis(iterator);
                 iterator = fileContent.charIterator();
                 new StatisticalAnalysis(iterator);
                 view.print(String.format("Benchmark time: %.3f seconds", stopTime(startTime)));
             } catch (FileNotFoundException e) {
-                view.print("File not found! Please input the correct path.");
+                view.print(String.format("%s not found! Please input the correct path.", oneFile));
             } catch (IOException e){
-                view.print("The problem with read your file.");
+                view.print(String.format("The problem with read your file - ", oneFile));
             }        
         }
     }
