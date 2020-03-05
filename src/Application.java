@@ -5,7 +5,6 @@ import java.io.IOException;
 import java.util.Iterator;
 
 public class Application {
-    static String[] filenames;
     static View view;
     private static Iterator<String>  iterator;
 
