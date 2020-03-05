@@ -16,46 +16,28 @@ public class StatisticalAnalysis {
     private View view;
 
     private HashMap<String, Integer> dicOfElem;
-    private HashMap<String, Integer> dicOfWord;
-    private HashMap<String, Integer> dicOfChar;
 
     private List<HashMap<String, Integer>> arrayOfDics;
 
     public StatisticalAnalysis(Iterator<String> iteratorToAnalysis){
         long startTime = startTime();
-        dicOfWord = new HashMap<>();
-        dicOfChar = new HashMap<>();
+        dicOfElem = new HashMap<>();
         arrayOfDics = new ArrayList<HashMap<String, Integer>>();
         view = new View();
+        iteratorStatisticalAnalysis = iteratorToAnalysis;
 
-        fillDictionary(Application.filenames);
+        fillDictionary();
         view.print(String.format("Benchmark time: %.3f seconds", stopTime(startTime)));
     }
 
-    private void fillDictionary(String[] filenames){
-        
-        for(String oneFile : filenames){
-            try{
-                dicOfWord.clear();
-                dicOfChar.clear();
+    private void fillDictionary(){
 
-                FileContent fileContent = new FileContent(oneFile);
+            dicOfElem.clear();
 
-                iteratorStatisticalAnalysis = new WordIterator(fileContent);
-                addToDic(dicOfWord);
+            addToDic(dicOfElem);
 
-                iteratorStatisticalAnalysis = new CharIterator(fileContent);
-                addToDic(dicOfChar);
+            calculateValuesAndPrint();
 
-                calculateValuesAndPrint(dicOfWord, dicOfChar, oneFile);
-            } catch (FileNotFoundException e) {
-                view.print("File not found! Please input the correct path.");
-            } catch (NullPointerException e){
-                view.print("This program is working only with parameters. Please insert file name as paramter.");
-            } catch (IOException e){
-                view.print("The problem with read your file.");
-            }
-        }
     }
 
     private void addToDic(HashMap<String, Integer> dic){
@@ -71,32 +53,32 @@ public class StatisticalAnalysis {
         arrayOfDics.add(dic);
     }
 
-    private void calculateValuesAndPrint(HashMap<String, Integer> dicOfWord, HashMap<String, Integer> dicOfChar, String filename){
-            dicOfElem = dicOfWord;
+    private void calculateValuesAndPrint(){
+        if(iteratorStatisticalAnalysis.getClass() == WordIterator.class){
             int countOfWords = size();
             int dictSize = dictionarySize();
             Set<String> mostUsedWords = occurMoreThan(1);
             int countOfLove = countOf("love");
             int countOfHate = countOf("hate");
             int countOfMusic = countOf("music");
-
-            dicOfElem = dicOfChar;
-            Double countOfChars = Double.valueOf(size());
-            Double countOfVowels = Double.valueOf(countOf("A", "E", "I", "O", "U"));
-            Double percentOfVowels = (countOfVowels / countOfChars) * Double.valueOf(100.0);
-            double countRatioAE = (double)countOf("A")/(double)countOf("E");
             
-            view.print(String.format("==%s==", filename));
-            view.print(String.format("Char count: %d", countOfChars.intValue()));
             view.print(String.format("Word count: %d", countOfWords));
             view.print(String.format("Dict size: %d", dictSize));
             view.print("Most used words (>1%): ", mostUsedWords);
             view.print(String.format("'love' count: %d", countOfLove));
             view.print(String.format("'hate' count: %d", countOfHate));
             view.print(String.format("'music' count: %d", countOfMusic));
+        }else{
+            Double countOfChars = Double.valueOf(size());
+            Double countOfVowels = Double.valueOf(countOf("A", "E", "I", "O", "U"));
+            Double percentOfVowels = (countOfVowels / countOfChars) * Double.valueOf(100.0);
+            double countRatioAE = (double)countOf("A")/(double)countOf("E");
+
+            view.print(String.format("Char count: %d", countOfChars.intValue()));
             view.print(String.format("vowels %% : %d", percentOfVowels.intValue()));
             view.print(String.format("a:e count ratio: %.2f", countRatioAE));
             percentOfAlphabet(dicOfElem);
+        }
     }
 
     private void percentOfAlphabet(HashMap<String, Integer> dic){
