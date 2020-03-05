@@ -7,7 +7,7 @@ public class CharIterator implements Iterator<String> {
     private String[] splitFromFile;
     private int count;
 
-    CharIterator(FileContent charIterator){
+    public CharIterator(FileContent charIterator){
         fromFile = charIterator.contentFromFile;
         removeWhiteSpaces();
         splitFromFile = fromFile.split("");
