@@ -1,7 +1,5 @@
 package src;
 
-import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.util.Iterator;
 
 public class WordIterator implements Iterator<String> {
@@ -9,7 +7,7 @@ public class WordIterator implements Iterator<String> {
     private String[] splitFromFile;
     private int count;
 
-    WordIterator(FileContent fileContent) throws FileNotFoundException, NullPointerException, IOException{
+    WordIterator(FileContent fileContent) {
         fromFile = fileContent.contentFromFile;
         splitFromFile = fromFile.split("\\s+");
         count = 0;

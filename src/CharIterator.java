@@ -1,7 +1,5 @@
 package src;
 
-import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.util.Iterator;
 
 public class CharIterator implements Iterator<String> {
@@ -9,7 +7,7 @@ public class CharIterator implements Iterator<String> {
     private String[] splitFromFile;
     private int count;
 
-    CharIterator(FileContent charIterator) throws FileNotFoundException, NullPointerException, IOException{
+    CharIterator(FileContent charIterator){
         fromFile = charIterator.contentFromFile;
         removeWhiteSpaces();
         splitFromFile = fromFile.split("");
