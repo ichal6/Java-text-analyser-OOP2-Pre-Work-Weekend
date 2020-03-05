@@ -20,11 +20,11 @@ public class StatisticalAnalysis {
     }
 
     private void fillDictionary(){
-            dicOfElem.clear();
+        dicOfElem.clear();
 
-            addToDic(dicOfElem);
+        addToDic(dicOfElem);
 
-            calculateValuesAndPrint();
+        calculateValuesAndPrint();
     }
 
     private void addToDic(HashMap<String, Integer> dic){
