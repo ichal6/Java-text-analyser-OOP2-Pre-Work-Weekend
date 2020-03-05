@@ -24,8 +24,6 @@ public class Application {
                 view.print(String.format("Benchmark time: %.3f seconds", stopTime(startTime)));
             } catch (FileNotFoundException e) {
                 view.print("File not found! Please input the correct path.");
-            } catch (NullPointerException e){
-                view.print("This program is working only with parameters. Please insert file name as paramter.");
             } catch (IOException e){
                 view.print("The problem with read your file.");
             }        
