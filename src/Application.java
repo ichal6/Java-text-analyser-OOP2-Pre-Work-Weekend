@@ -7,6 +7,7 @@ import java.util.Iterator;
 public class Application {
     static String[] filenames;
     static View view;
+    private static Iterator<String>  iterator;
 
     public static void main(String[] args) {
         view = new View();
@@ -16,10 +17,10 @@ public class Application {
                 long startTime = startTime();
                 view.print(String.format("==%s==", oneFile));
                 FileContent fileContent = new FileContent(oneFile);
-                Iterator<String>  iteratorToAnalysis = new WordIterator(fileContent);
-                new StatisticalAnalysis(iteratorToAnalysis);
-                iteratorToAnalysis = new CharIterator(fileContent);
-                new StatisticalAnalysis(iteratorToAnalysis);
+                iterator = new WordIterator(fileContent);
+                new StatisticalAnalysis(iterator);
+                iterator = new CharIterator(fileContent);
+                new StatisticalAnalysis(iterator);
                 view.print(String.format("Benchmark time: %.3f seconds", stopTime(startTime)));
             } catch (FileNotFoundException e) {
                 view.print("File not found! Please input the correct path.");
@@ -31,9 +32,6 @@ public class Application {
         
         }
     }
-
-
-
 
     private static long startTime(){
         return System.nanoTime();
