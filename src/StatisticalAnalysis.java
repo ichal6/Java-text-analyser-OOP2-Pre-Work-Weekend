@@ -1,7 +1,5 @@
 package src;
 
-import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -20,14 +18,14 @@ public class StatisticalAnalysis {
     private List<HashMap<String, Integer>> arrayOfDics;
 
     public StatisticalAnalysis(Iterator<String> iteratorToAnalysis){
-        long startTime = startTime();
+        
         dicOfElem = new HashMap<>();
         arrayOfDics = new ArrayList<HashMap<String, Integer>>();
         view = new View();
         iteratorStatisticalAnalysis = iteratorToAnalysis;
 
         fillDictionary();
-        view.print(String.format("Benchmark time: %.3f seconds", stopTime(startTime)));
+        
     }
 
     private void fillDictionary(){
@@ -134,14 +132,4 @@ public class StatisticalAnalysis {
         return newSet;
     }
 
-    private static long startTime(){
-        return System.nanoTime();
-    }
-
-    private static Double stopTime(long startTime){
-        long endTime = System.nanoTime();
-        Double start = Double.valueOf(startTime);
-        Double end = Double.valueOf(endTime);
-        return (end - start)/1000000000.0;
-    }
 }

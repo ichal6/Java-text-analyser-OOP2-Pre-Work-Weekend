@@ -13,12 +13,14 @@ public class Application {
         filenames = args;
         for(String oneFile : args){
             try{
+                long startTime = startTime();
                 view.print(String.format("==%s==", oneFile));
                 FileContent fileContent = new FileContent(oneFile);
                 Iterator<String>  iteratorToAnalysis = new WordIterator(fileContent);
                 new StatisticalAnalysis(iteratorToAnalysis);
                 iteratorToAnalysis = new CharIterator(fileContent);
                 new StatisticalAnalysis(iteratorToAnalysis);
+                view.print(String.format("Benchmark time: %.3f seconds", stopTime(startTime)));
             } catch (FileNotFoundException e) {
                 view.print("File not found! Please input the correct path.");
             } catch (NullPointerException e){
@@ -28,6 +30,20 @@ public class Application {
             }        
         
         }
+    }
+
+
+
+
+    private static long startTime(){
+        return System.nanoTime();
+    }
+
+    private static Double stopTime(long startTime){
+        long endTime = System.nanoTime();
+        Double start = Double.valueOf(startTime);
+        Double end = Double.valueOf(endTime);
+        return (end - start)/1000000000.0;
     }
 
 }
