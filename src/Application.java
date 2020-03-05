@@ -29,7 +29,6 @@ public class Application {
             } catch (IOException e){
                 view.print("The problem with read your file.");
             }        
-        
         }
     }
 
