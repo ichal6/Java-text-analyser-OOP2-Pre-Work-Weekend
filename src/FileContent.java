@@ -35,13 +35,13 @@ public class FileContent implements IterableText {
     }
 
     @Override
-    public Iterator<String> charIterator() throws FileNotFoundException, NullPointerException, IOException {
+    public Iterator<String> charIterator(){
         Iterator<String> newIterator = new CharIterator(this); 
         return newIterator;
     }
 
     @Override
-    public Iterator<String> wordIterator()  throws FileNotFoundException, NullPointerException, IOException {
+    public Iterator<String> wordIterator(){
         Iterator<String> newIterator = new WordIterator(this);
         return newIterator;
     }
