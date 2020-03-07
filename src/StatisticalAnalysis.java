@@ -20,8 +20,6 @@ public class StatisticalAnalysis {
     }
 
     private void fillDictionary(){
-        dicOfElem.clear();
-
         addToDic(dicOfElem);
 
         calculateValuesAndPrint();
