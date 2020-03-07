@@ -11,11 +11,15 @@ public class StatisticalAnalysis {
     private View view;
     private HashMap<String, Integer> dicOfElem;
 
-    public StatisticalAnalysis(Iterator<String> iteratorToAnalysis){   
+    public StatisticalAnalysis(Iterator<String> iteratorToAnalysis) throws NullPointerException{
+        if(iteratorToAnalysis == null){
+            throw new NullPointerException("Your iterator is a null");
+        }
+
+        iteratorStatisticalAnalysis = iteratorToAnalysis;
         dicOfElem = new HashMap<>();
         view = new View();
-        iteratorStatisticalAnalysis = iteratorToAnalysis;
-
+        
         fillDictionary();
     }
 
